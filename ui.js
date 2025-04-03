@@ -31,13 +31,23 @@ function closeAchievements() {
   document.getElementById("main-menu").classList.remove("hidden");
 }
 
-// "Über das Spiel" öffnen/schließen
+// "Über das Spiel" öffnen
 function showAbout() {
   document.getElementById("about-popup").classList.remove("hidden");
   document.getElementById("main-menu").classList.add("hidden");
 }
 
+// "Über das Spiel" schließen
 function closeAbout() {
   document.getElementById("about-popup").classList.add("hidden");
   document.getElementById("main-menu").classList.remove("hidden");
 }
+
+// Nach dem DOM-Load Buttons korrekt verbinden
+document.addEventListener("DOMContentLoaded", () => {
+  // Button im "Über das Spiel"-Popup
+  const aboutCloseBtn = document.querySelector("#about-popup button");
+  if (aboutCloseBtn) {
+    aboutCloseBtn.addEventListener("click", closeAbout);
+  }
+});
