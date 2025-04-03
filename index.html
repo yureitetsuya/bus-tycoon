@@ -12,6 +12,7 @@
     <h1>🚌 Mini Bus Simulator</h1>
     <button id="btn-start">🎮 Spiel starten</button>
     <button id="btn-about">ℹ️ Über das Spiel</button>
+    <button id="btn-collection">🃏 Sammelkarten</button>
   </div>
 
   <!-- Spielbereich -->
@@ -31,7 +32,7 @@
     <button id="btn-back" style="margin-top:20px;">🔙 Zurück zum Hauptmenü</button>
   </div>
 
-  <!-- Pop-up für Ereignisse -->
+  <!-- Pop-up: Ereignis -->
   <div id="event-popup" class="popup-overlay hidden">
     <div class="popup">
       <h2 id="event-title">Ereignis!</h2>
@@ -47,6 +48,15 @@
       <p>Ziehe zufällige Ereignisse und baue dein Busunternehmen auf.  
          Pass aber auf: Wer einen VDL CITEA erwischt, verliert sofort. 😉</p>
       <button id="btn-about-close">Zurück</button>
+    </div>
+  </div>
+
+  <!-- Pop-up: Sammelkarten -->
+  <div id="collection-popup" class="popup-overlay hidden">
+    <div class="popup">
+      <h2>🃏 Deine Sammelkarten</h2>
+      <ul id="collection-list"></ul>
+      <button id="btn-collection-close">Zurück</button>
     </div>
   </div>
 
