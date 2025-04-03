@@ -14,7 +14,6 @@
     <button id="btn-new">Neues Spiel</button>
     <button id="btn-continue">Spiel fortsetzen</button>
     <button id="btn-achievements">Erfolge</button>
-    <button id="btn-about">Über das Spiel</button>
   </div>
 
   <!-- Spielinterface mit Tabs -->
@@ -24,24 +23,33 @@
       <button data-tab="services">Dienste</button>
       <button data-tab="fleet">Fuhrpark</button>
       <button data-tab="settings">Einstellungen</button>
+      <button data-tab="about">Über das Spiel</button>
     </div>
 
     <div class="tab-content">
       <div id="dashboard" class="tab">Willkommen im Dashboard! Geld: <span id="money">0</span> €</div>
+
       <div id="services" class="tab hidden">
         <h2>Dienste</h2>
         <button data-service="200">Kurzdienst (2h, +200 €)</button>
         <button data-service="500">Mitteldienst (4h, +500 €)</button>
         <button data-service="1000">Langdienst (6h, +1000 €)</button>
       </div>
+
       <div id="fleet" class="tab hidden">
         <h2>Fuhrpark</h2>
         <p>Dein Buszustand: <span id="bus-condition">100</span>%</p>
         <button id="btn-repair">Bus reparieren (–100 €)</button>
       </div>
+
       <div id="settings" class="tab hidden">
         <h2>Einstellungen</h2>
         <button id="btn-reset">Spiel zurücksetzen</button>
+      </div>
+
+      <div id="about" class="tab hidden">
+        <h2>Über das Spiel</h2>
+        <p>Ein minimalistischer Bus-Tycoon. Verdiene Geld, halte deine Busse in Schuss, wachse!</p>
       </div>
     </div>
   </div>
@@ -61,15 +69,6 @@
       <h2>🏆 Erfolge</h2>
       <ul id="achievements-list"></ul>
       <button id="btn-achievements-close">Schließen</button>
-    </div>
-  </div>
-
-  <!-- Info -->
-  <div id="about-popup" class="overlay hidden">
-    <div class="popup">
-      <h2>Über das Spiel</h2>
-      <p>Ein minimalistischer Bus-Tycoon. Verdiene Geld, halte deine Busse in Schuss, wachse!</p>
-      <button id="btn-about-close">Schließen</button>
     </div>
   </div>
 
