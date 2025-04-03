@@ -9,30 +9,14 @@ function showAchievement(text) {
   const entry = document.createElement("li");
   entry.textContent = text;
   list.appendChild(entry);
-  document.getElementById("achievements-popup").classList.remove("hidden");
-  setTimeout(closeAchievements, 3000);
-}
-
-function showAchievements() {
-  document.getElementById("main-menu").classList.add("hidden");
-  document.getElementById("achievements-popup").classList.remove("hidden");
-}
-
-function closeAchievements() {
-  document.getElementById("achievements-popup").classList.add("hidden");
-  document.getElementById("main-menu").classList.remove("hidden");
 }
 
 window.onload = function () {
   // Hauptmenü-Buttons
   document.getElementById("btn-new").addEventListener("click", startNewGame);
   document.getElementById("btn-continue").addEventListener("click", continueGame);
-  document.getElementById("btn-achievements").addEventListener("click", showAchievements);
 
-  // Erfolge schließen
-  document.getElementById("btn-achievements-close").addEventListener("click", closeAchievements);
-
-  // Tabs (inkl. „Über das Spiel“)
+  // Tabs
   document.querySelectorAll(".tabs button").forEach((btn) => {
     btn.addEventListener("click", () => showTab(btn.dataset.tab));
   });
