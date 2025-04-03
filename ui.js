@@ -4,7 +4,6 @@ function showTab(tabId) {
   document.getElementById(tabId).classList.remove("hidden");
 }
 
-// Erfolg anzeigen
 function showAchievement(text) {
   const list = document.getElementById("achievements-list");
   const entry = document.createElement("li");
@@ -13,41 +12,62 @@ function showAchievement(text) {
 
   document.getElementById("achievements-popup").classList.remove("hidden");
 
-  // Nach 3 Sekunden automatisch ausblenden
   setTimeout(() => {
     closeAchievements();
   }, 3000);
 }
 
-// Erfolge manuell öffnen
 function showAchievements() {
   document.getElementById("main-menu").classList.add("hidden");
   document.getElementById("achievements-popup").classList.remove("hidden");
 }
 
-// Schließen
 function closeAchievements() {
   document.getElementById("achievements-popup").classList.add("hidden");
   document.getElementById("main-menu").classList.remove("hidden");
 }
 
-// "Über das Spiel" öffnen
 function showAbout() {
   document.getElementById("about-popup").classList.remove("hidden");
   document.getElementById("main-menu").classList.add("hidden");
 }
 
-// "Über das Spiel" schließen
 function closeAbout() {
   document.getElementById("about-popup").classList.add("hidden");
   document.getElementById("main-menu").classList.remove("hidden");
 }
 
-// Nach dem DOM-Load Buttons korrekt verbinden
+// Event-Verknüpfung bei Seitenstart
 document.addEventListener("DOMContentLoaded", () => {
-  // Button im "Über das Spiel"-Popup
-  const aboutCloseBtn = document.querySelector("#about-popup button");
-  if (aboutCloseBtn) {
-    aboutCloseBtn.addEventListener("click", closeAbout);
-  }
+  // Hauptmenü-Buttons
+  document.getElementById("btn-new").addEventListener("click", startNewGame);
+  document.getElementById("btn-continue").addEventListener("click", continueGame);
+  document.getElementById("btn-achievements").addEventListener("click", showAchievements);
+  document.getElementById("btn-about").addEventListener("click", showAbout);
+
+  // Schließen-Buttons
+  document.getElementById("btn-about-close").addEventListener("click", closeAbout);
+  document.getElementById("btn-achievements-close").addEventListener("click", closeAchievements);
+
+  // Tabs
+  document.querySelectorAll(".tabs button").forEach((btn) => {
+    btn.addEventListener("click", () => showTab(btn.dataset.tab));
+  });
+
+  // Dienst-Buttons
+  document.querySelectorAll('[data-service]').forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const income = parseInt(btn.dataset.service);
+      runService(income);
+    });
+  });
+
+  // Reparieren
+  document.getElementById("btn-repair").addEventListener("click", repairBus);
+
+  // Reset
+  document.getElementById("btn-reset").addEventListener("click", resetGame);
+
+  // Game Over: Neu starten
+  document.getElementById("btn-restart").addEventListener("click", startNewGame);
 });
