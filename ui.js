@@ -16,7 +16,7 @@ window.onload = function () {
   document.getElementById("btn-new").addEventListener("click", startNewGame);
   document.getElementById("btn-continue").addEventListener("click", continueGame);
 
-  // Tabs
+  // Tabs (inkl. Game Over, Achievements, Info)
   document.querySelectorAll(".tabs button").forEach((btn) => {
     btn.addEventListener("click", () => showTab(btn.dataset.tab));
   });
@@ -35,6 +35,6 @@ window.onload = function () {
   // Reset
   document.getElementById("btn-reset").addEventListener("click", resetGame);
 
-  // Game Over
+  // Game Over Tab → Neustart
   document.getElementById("btn-restart").addEventListener("click", startNewGame);
 };
