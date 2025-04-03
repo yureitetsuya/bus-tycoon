@@ -1,15 +1,18 @@
-let money = 0;
+let money = 1000;
 let busCondition = 100;
-let achievements = {};
+
+function updateUI() {
+  document.getElementById("money").textContent = money;
+  document.getElementById("bus-condition").textContent = busCondition;
+}
 
 function startNewGame() {
   money = 1000;
   busCondition = 100;
-  achievements = {};
   saveGame();
+  showTab("dashboard");
   document.getElementById("main-menu").classList.add("hidden");
   document.getElementById("game-ui").classList.remove("hidden");
-  showTab("dashboard");
   updateUI();
 }
 
@@ -21,59 +24,40 @@ function continueGame() {
   updateUI();
 }
 
+function resetGame() {
+  localStorage.removeItem("bus-money");
+  localStorage.removeItem("bus-condition");
+  location.reload();
+}
+
 function runService(income) {
-  if (busCondition <= 0) {
-    alert("Dein Bus ist kaputt und muss repariert werden!");
-    return;
-  }
+  if (busCondition <= 0) return;
 
   money += income;
   busCondition -= 10;
+  if (money <= 0) {
+    showTab("gameover"); // ❗ Tab statt Overlay
+    return;
+  }
+
+  if (money >= 1200 && !localStorage.getItem("achievement1")) {
+    localStorage.setItem("achievement1", "true");
+    showAchievement("Erster Dienst gefahren!");
+  }
+
+  if (money >= 10000 && !localStorage.getItem("achievement2")) {
+    localStorage.setItem("achievement2", "true");
+    showAchievement("Du hast 10.000 € verdient!");
+  }
+
   updateUI();
-  checkAchievements();
-  checkGameOver();
   saveGame();
 }
 
 function repairBus() {
-  if (money < 100) {
-    alert("Nicht genug Geld zum Reparieren!");
-    return;
-  }
-
+  if (money < 100 || busCondition >= 100) return;
   money -= 100;
   busCondition = 100;
   updateUI();
   saveGame();
-}
-
-function updateUI() {
-  document.getElementById("money").textContent = money;
-  document.getElementById("bus-condition").textContent = busCondition;
-}
-
-function checkGameOver() {
-  if (money <= 0) {
-    document.getElementById("game-ui").classList.add("hidden");
-    document.getElementById("game-over").classList.remove("hidden");
-  }
-}
-
-function resetGame() {
-  if (confirm("Bist du sicher? Dein Speicherstand wird gelöscht.")) {
-    localStorage.removeItem("busManagerSave");
-    location.reload();
-  }
-}
-
-function checkAchievements() {
-  if (!achievements["first-service"] && money >= 1200) {
-    achievements["first-service"] = true;
-    showAchievement("Erster Dienst gefahren!");
-  }
-
-  if (!achievements["rich"] && money >= 10000) {
-    achievements["rich"] = true;
-    showAchievement("Du hast 10.000 € verdient!");
-  }
 }
