@@ -1,7 +1,18 @@
 function showTab(tabId) {
   const tabs = document.querySelectorAll(".tab");
-  tabs.forEach((tab) => tab.classList.add("hidden"));
-  document.getElementById(tabId).classList.remove("hidden");
+  tabs.forEach(tab => tab.classList.add("hidden"));
+  const target = document.getElementById(tabId);
+  if (target) target.classList.remove("hidden");
+}
+
+function showPopup(id) {
+  const popup = document.getElementById(id);
+  if (popup) popup.classList.remove("hidden");
+}
+
+function closePopup(id) {
+  const popup = document.getElementById(id);
+  if (popup) popup.classList.add("hidden");
 }
 
 function showAchievement(text) {
@@ -9,32 +20,39 @@ function showAchievement(text) {
   const entry = document.createElement("li");
   entry.textContent = text;
   list.appendChild(entry);
+  showPopup("popup-achievements");
 }
 
 window.onload = function () {
   // Hauptmenü
   document.getElementById("btn-new").addEventListener("click", startNewGame);
   document.getElementById("btn-continue").addEventListener("click", continueGame);
+  document.getElementById("btn-achievements").addEventListener("click", () => showPopup("popup-achievements"));
+  document.getElementById("btn-about").addEventListener("click", () => showPopup("popup-about"));
 
-  // Tab-Klicks (inkl. Game Over, Erfolge, Info)
-  document.querySelectorAll(".tabs button").forEach((btn) => {
-    btn.addEventListener("click", () => showTab(btn.dataset.tab));
-  });
+  // Popups schließen
+  document.getElementById("btn-achievements-close").addEventListener("click", () => closePopup("popup-achievements"));
+  document.getElementById("btn-about-close").addEventListener("click", () => closePopup("popup-about"));
+  document.getElementById("btn-restart").addEventListener("click", startNewGame);
 
-  // Dienste
-  document.querySelectorAll("[data-service]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const income = parseInt(btn.dataset.service);
-      runService(income);
+  // Tabs
+  document.querySelectorAll(".tabs button").forEach(button => {
+    button.addEventListener("click", () => {
+      showTab(button.dataset.tab);
     });
   });
 
-  // Bus reparieren
+  // Dienste
+  document.querySelectorAll("[data-service]").forEach(button => {
+    button.addEventListener("click", () => {
+      const value = parseInt(button.dataset.service);
+      runService(value);
+    });
+  });
+
+  // Reparieren
   document.getElementById("btn-repair").addEventListener("click", repairBus);
 
-  // Reset
+  // Zurücksetzen
   document.getElementById("btn-reset").addEventListener("click", resetGame);
-
-  // Game Over: Neu starten
-  document.getElementById("btn-restart").addEventListener("click", startNewGame);
 };
