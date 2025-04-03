@@ -37,15 +37,14 @@ function closeAbout() {
   document.getElementById("main-menu").classList.remove("hidden");
 }
 
-// Event-Verknüpfung bei Seitenstart
 document.addEventListener("DOMContentLoaded", () => {
-  // Hauptmenü-Buttons
+  // Hauptmenü
   document.getElementById("btn-new").addEventListener("click", startNewGame);
   document.getElementById("btn-continue").addEventListener("click", continueGame);
   document.getElementById("btn-achievements").addEventListener("click", showAchievements);
   document.getElementById("btn-about").addEventListener("click", showAbout);
 
-  // Schließen-Buttons
+  // Popups schließen
   document.getElementById("btn-about-close").addEventListener("click", closeAbout);
   document.getElementById("btn-achievements-close").addEventListener("click", closeAchievements);
 
@@ -54,20 +53,20 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => showTab(btn.dataset.tab));
   });
 
-  // Dienst-Buttons
-  document.querySelectorAll('[data-service]').forEach((btn) => {
+  // Dienste
+  document.querySelectorAll("[data-service]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const income = parseInt(btn.dataset.service);
       runService(income);
     });
   });
 
-  // Reparieren
+  // Bus reparieren
   document.getElementById("btn-repair").addEventListener("click", repairBus);
 
   // Reset
   document.getElementById("btn-reset").addEventListener("click", resetGame);
 
-  // Game Over: Neu starten
+  // Game Over
   document.getElementById("btn-restart").addEventListener("click", startNewGame);
 });
