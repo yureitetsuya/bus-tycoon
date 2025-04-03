@@ -13,19 +13,17 @@
     <h1>🚍 Mini Bus Manager</h1>
     <button id="btn-new">Neues Spiel</button>
     <button id="btn-continue">Spiel fortsetzen</button>
-    <button onclick="showTab('achievements')">Erfolge</button>
+    <button id="btn-achievements">Erfolge</button>
+    <button id="btn-about">Über das Spiel</button>
   </div>
 
-  <!-- Spielinterface mit Tabs -->
+  <!-- Tabs (nur sichtbar im Spiel) -->
   <div id="game-ui" class="screen hidden">
     <div class="tabs">
       <button data-tab="dashboard">Dashboard</button>
       <button data-tab="services">Dienste</button>
       <button data-tab="fleet">Fuhrpark</button>
       <button data-tab="settings">Einstellungen</button>
-      <button data-tab="about">Über das Spiel</button>
-      <button data-tab="achievements">Erfolge</button>
-      <button data-tab="gameover">Game Over</button>
     </div>
 
     <div class="tab-content">
@@ -33,37 +31,46 @@
 
       <div id="services" class="tab hidden">
         <h2>Dienste</h2>
-        <button data-service="200">Kurzdienst (2h, +200 €)</button>
-        <button data-service="500">Mitteldienst (4h, +500 €)</button>
-        <button data-service="1000">Langdienst (6h, +1000 €)</button>
+        <button data-service="200">Kurzdienst (+200 €)</button>
+        <button data-service="500">Mitteldienst (+500 €)</button>
+        <button data-service="1000">Langdienst (+1000 €)</button>
       </div>
 
       <div id="fleet" class="tab hidden">
         <h2>Fuhrpark</h2>
-        <p>Dein Buszustand: <span id="bus-condition">100</span>%</p>
-        <button id="btn-repair">Bus reparieren (–100 €)</button>
+        <p>Zustand: <span id="bus-condition">100</span>%</p>
+        <button id="btn-repair">Reparieren (–100 €)</button>
       </div>
 
       <div id="settings" class="tab hidden">
         <h2>Einstellungen</h2>
         <button id="btn-reset">Spiel zurücksetzen</button>
       </div>
+    </div>
+  </div>
 
-      <div id="about" class="tab hidden">
-        <h2>Über das Spiel</h2>
-        <p>Ein minimalistischer Bus-Tycoon. Verdiene Geld, halte deine Busse in Schuss, wachse!</p>
-      </div>
+  <!-- Popups -->
+  <div id="popup-achievements" class="popup hidden">
+    <div class="popup-content">
+      <h2>🏆 Erfolge</h2>
+      <ul id="achievements-list"></ul>
+      <button id="btn-close-achievements">Schließen</button>
+    </div>
+  </div>
 
-      <div id="achievements" class="tab hidden">
-        <h2>🏆 Erfolge</h2>
-        <ul id="achievements-list"></ul>
-      </div>
+  <div id="popup-about" class="popup hidden">
+    <div class="popup-content">
+      <h2>ℹ️ Über das Spiel</h2>
+      <p>Ein minimalistischer Bus-Tycoon. Verdiene Geld, halte deinen Fuhrpark in Schuss, wachse!</p>
+      <button id="btn-close-about">Schließen</button>
+    </div>
+  </div>
 
-      <div id="gameover" class="tab hidden">
-        <h2>❌ Game Over</h2>
-        <p>Dein Unternehmen ist zahlungsunfähig.</p>
-        <button id="btn-restart">Neu starten</button>
-      </div>
+  <div id="popup-gameover" class="popup hidden">
+    <div class="popup-content">
+      <h2>❌ Game Over</h2>
+      <p>Dein Unternehmen ist zahlungsunfähig.</p>
+      <button id="btn-restart">Neu starten</button>
     </div>
   </div>
 
@@ -71,12 +78,6 @@
   <script src="data.js"></script>
   <script src="save.js"></script>
   <script src="ui.js"></script>
-  <script>
-    window.onload = function () {
-      const script = document.createElement("script");
-      script.src = "main.js";
-      document.body.appendChild(script);
-    };
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
