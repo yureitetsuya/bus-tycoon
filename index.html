@@ -3,81 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mini Bus Manager</title>
-  <link rel="icon" href="https://static-00.iconduck.com/assets.00/bus-icon-512x512-j11exx2y.png" type="image/png">
+  <title>Mini Bus Simulator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Hauptmenü -->
-  <div id="main-menu" class="screen">
-    <h1>🚍 Mini Bus Manager</h1>
-    <button id="btn-new">Neues Spiel</button>
-    <button id="btn-continue">Spiel fortsetzen</button>
-    <button id="btn-achievements">Erfolge</button>
-    <button id="btn-about">Über das Spiel</button>
-  </div>
+  <div class="container">
+    <h1>🚌 Mini Bus Simulator</h1>
 
-  <!-- Tabs (nur sichtbar im Spiel) -->
-  <div id="game-ui" class="screen hidden">
-    <div class="tabs">
-      <button data-tab="dashboard">Dashboard</button>
-      <button data-tab="services">Dienste</button>
-      <button data-tab="fleet">Fuhrpark</button>
-      <button data-tab="settings">Einstellungen</button>
+    <!-- Infoleiste -->
+    <div class="info-bar">
+      <span>Fahrer: <span id="driver-count">2</span></span>
+      <span>Fahrzeuge: <span id="vehicle-count">2</span></span>
+      <span>Dienste: <span id="service-count">0</span></span>
+      <span>Guthaben: <span id="money">1000</span> €</span>
     </div>
 
-    <div class="tab-content">
-      <div id="dashboard" class="tab">Willkommen im Dashboard! Geld: <span id="money">0</span> €</div>
-
-      <div id="services" class="tab hidden">
-        <h2>Dienste</h2>
-        <button data-service="200">Kurzdienst (+200 €)</button>
-        <button data-service="500">Mitteldienst (+500 €)</button>
-        <button data-service="1000">Langdienst (+1000 €)</button>
-      </div>
-
-      <div id="fleet" class="tab hidden">
-        <h2>Fuhrpark</h2>
-        <p>Zustand: <span id="bus-condition">100</span>%</p>
-        <button id="btn-repair">Reparieren (–100 €)</button>
-      </div>
-
-      <div id="settings" class="tab hidden">
-        <h2>Einstellungen</h2>
-        <button id="btn-reset">Spiel zurücksetzen</button>
-      </div>
-    </div>
+    <!-- Button -->
+    <button id="draw-event">🃏 Ereignis ziehen</button>
   </div>
 
-  <!-- Popups -->
-  <div id="popup-achievements" class="popup hidden">
-    <div class="popup-content">
-      <h2>🏆 Erfolge</h2>
-      <ul id="achievements-list"></ul>
-      <button id="btn-close-achievements">Schließen</button>
-    </div>
-  </div>
-
-  <div id="popup-about" class="popup hidden">
-    <div class="popup-content">
-      <h2>ℹ️ Über das Spiel</h2>
-      <p>Ein minimalistischer Bus-Tycoon. Verdiene Geld, halte deinen Fuhrpark in Schuss, wachse!</p>
-      <button id="btn-close-about">Schließen</button>
-    </div>
-  </div>
-
-  <div id="popup-gameover" class="popup hidden">
-    <div class="popup-content">
-      <h2>❌ Game Over</h2>
-      <p>Dein Unternehmen ist zahlungsunfähig.</p>
-      <button id="btn-restart">Neu starten</button>
+  <!-- Ereignis-Popup -->
+  <div id="event-popup" class="popup-overlay hidden">
+    <div class="popup">
+      <h2 id="event-title">Ereignis!</h2>
+      <p id="event-description">Ein zufälliges Ereignis ist passiert.</p>
+      <button id="event-ok">OK</button>
     </div>
   </div>
 
   <!-- Scripts -->
-  <script src="data.js"></script>
-  <script src="save.js"></script>
-  <script src="ui.js"></script>
   <script src="main.js"></script>
+  <script src="ui.js"></script>
 </body>
 </html>
