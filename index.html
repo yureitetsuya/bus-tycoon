@@ -13,7 +13,7 @@
     <h1>🚍 Mini Bus Manager</h1>
     <button id="btn-new">Neues Spiel</button>
     <button id="btn-continue">Spiel fortsetzen</button>
-    <button id="btn-achievements">Erfolge</button>
+    <button onclick="showTab('achievements')">Erfolge</button>
   </div>
 
   <!-- Spielinterface mit Tabs -->
@@ -24,6 +24,7 @@
       <button data-tab="fleet">Fuhrpark</button>
       <button data-tab="settings">Einstellungen</button>
       <button data-tab="about">Über das Spiel</button>
+      <button data-tab="achievements">Erfolge</button>
     </div>
 
     <div class="tab-content">
@@ -51,6 +52,11 @@
         <h2>Über das Spiel</h2>
         <p>Ein minimalistischer Bus-Tycoon. Verdiene Geld, halte deine Busse in Schuss, wachse!</p>
       </div>
+
+      <div id="achievements" class="tab hidden">
+        <h2>🏆 Erfolge</h2>
+        <ul id="achievements-list"></ul>
+      </div>
     </div>
   </div>
 
@@ -60,15 +66,6 @@
       <h2>❌ Game Over</h2>
       <p>Dein Unternehmen ist zahlungsunfähig.</p>
       <button id="btn-restart">Neu starten</button>
-    </div>
-  </div>
-
-  <!-- Erfolge -->
-  <div id="achievements-popup" class="overlay hidden">
-    <div class="popup">
-      <h2>🏆 Erfolge</h2>
-      <ul id="achievements-list"></ul>
-      <button id="btn-achievements-close">Schließen</button>
     </div>
   </div>
 
