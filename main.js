@@ -10,9 +10,9 @@ function startNewGame() {
   money = 1000;
   busCondition = 100;
   saveGame();
-  showTab("dashboard");
   document.getElementById("main-menu").classList.add("hidden");
   document.getElementById("game-ui").classList.remove("hidden");
+  showTab("dashboard");
   updateUI();
 }
 
@@ -35,11 +35,13 @@ function runService(income) {
 
   money += income;
   busCondition -= 10;
+
   if (money <= 0) {
-    showTab("gameover"); // ❗ Tab statt Overlay
+    showPopup("popup-gameover");
     return;
   }
 
+  // Erfolge
   if (money >= 1200 && !localStorage.getItem("achievement1")) {
     localStorage.setItem("achievement1", "true");
     showAchievement("Erster Dienst gefahren!");
