@@ -77,6 +77,12 @@
   <script src="data.js"></script>
   <script src="save.js"></script>
   <script src="ui.js"></script>
-  <script src="main.js"></script>
+  <script>
+    window.onload = function () {
+      const script = document.createElement("script");
+      script.src = "main.js";
+      document.body.appendChild(script);
+    };
+  </script>
 </body>
 </html>
