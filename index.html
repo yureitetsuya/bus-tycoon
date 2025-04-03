@@ -7,9 +7,15 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
+  <!-- Hauptmenü -->
+  <div id="main-menu" class="container">
     <h1>🚌 Mini Bus Simulator</h1>
+    <button id="btn-start">🎮 Spiel starten</button>
+    <button id="btn-about">ℹ️ Über das Spiel</button>
+  </div>
 
+  <!-- Spielbereich -->
+  <div id="game-screen" class="container hidden">
     <!-- Infoleiste -->
     <div class="info-bar">
       <span>Fahrer: <span id="driver-count">2</span></span>
@@ -20,14 +26,27 @@
 
     <!-- Button -->
     <button id="draw-event">🃏 Ereignis ziehen</button>
+
+    <!-- Zurück -->
+    <button id="btn-back" style="margin-top:20px;">🔙 Zurück zum Hauptmenü</button>
   </div>
 
-  <!-- Ereignis-Popup -->
+  <!-- Pop-up für Ereignisse -->
   <div id="event-popup" class="popup-overlay hidden">
     <div class="popup">
       <h2 id="event-title">Ereignis!</h2>
       <p id="event-description">Ein zufälliges Ereignis ist passiert.</p>
       <button id="event-ok">OK</button>
+    </div>
+  </div>
+
+  <!-- Pop-up: Über das Spiel -->
+  <div id="about-popup" class="popup-overlay hidden">
+    <div class="popup">
+      <h2>ℹ️ Über das Spiel</h2>
+      <p>Ziehe zufällige Ereignisse und baue dein Busunternehmen auf.  
+         Pass aber auf: Wer einen VDL CITEA erwischt, verliert sofort. 😉</p>
+      <button id="btn-about-close">Zurück</button>
     </div>
   </div>
 
