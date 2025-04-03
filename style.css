@@ -45,11 +45,13 @@ button:hover {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .tabs button {
   flex: 1;
-  margin: 0 5px;
+  min-width: 100px;
   padding: 10px;
   font-weight: bold;
   background: #ddd;
@@ -96,4 +98,15 @@ button:hover {
 
 #achievements-list li::before {
   content: "🏆 ";
+}
+
+/* Optional: Fragezeichen-Icon oben rechts */
+.help-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
