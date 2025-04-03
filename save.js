@@ -1,22 +1,12 @@
 function saveGame() {
-  const saveData = {
-    money: money,
-    busCondition: busCondition,
-    achievements: achievements
-  };
-  localStorage.setItem("busManagerSave", JSON.stringify(saveData));
+  localStorage.setItem("bus-money", money);
+  localStorage.setItem("bus-condition", busCondition);
 }
 
 function loadGame() {
-  const saved = localStorage.getItem("busManagerSave");
-  if (!saved) {
-    alert("Kein Speicherstand gefunden.");
-    return;
-  }
+  const savedMoney = localStorage.getItem("bus-money");
+  const savedCondition = localStorage.getItem("bus-condition");
 
-  const data = JSON.parse(saved);
-  money = data.money || 0;
-  busCondition = data.busCondition || 100;
-  achievements = data.achievements || {};
-  updateUI();
+  money = savedMoney !== null ? parseInt(savedMoney) : 1000;
+  busCondition = savedCondition !== null ? parseInt(savedCondition) : 100;
 }
