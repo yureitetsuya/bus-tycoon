@@ -9,12 +9,8 @@ function showAchievement(text) {
   const entry = document.createElement("li");
   entry.textContent = text;
   list.appendChild(entry);
-
   document.getElementById("achievements-popup").classList.remove("hidden");
-
-  setTimeout(() => {
-    closeAchievements();
-  }, 3000);
+  setTimeout(closeAchievements, 3000);
 }
 
 function showAchievements() {
@@ -37,14 +33,15 @@ function closeAbout() {
   document.getElementById("main-menu").classList.remove("hidden");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Hauptmenü
+// 🔥 WICHTIG: Event-Handling erst nach kompletter Seitenausführung
+window.onload = function () {
+  // Hauptmenü-Buttons
   document.getElementById("btn-new").addEventListener("click", startNewGame);
   document.getElementById("btn-continue").addEventListener("click", continueGame);
   document.getElementById("btn-achievements").addEventListener("click", showAchievements);
   document.getElementById("btn-about").addEventListener("click", showAbout);
 
-  // Popups schließen
+  // Schließen der Popups
   document.getElementById("btn-about-close").addEventListener("click", closeAbout);
   document.getElementById("btn-achievements-close").addEventListener("click", closeAchievements);
 
@@ -69,4 +66,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Game Over
   document.getElementById("btn-restart").addEventListener("click", startNewGame);
-});
+};
