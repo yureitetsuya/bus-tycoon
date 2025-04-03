@@ -12,11 +12,11 @@ function showAchievement(text) {
 }
 
 window.onload = function () {
-  // Hauptmenü-Buttons
+  // Hauptmenü
   document.getElementById("btn-new").addEventListener("click", startNewGame);
   document.getElementById("btn-continue").addEventListener("click", continueGame);
 
-  // Tabs (inkl. Game Over, Achievements, Info)
+  // Tab-Klicks (inkl. Game Over, Erfolge, Info)
   document.querySelectorAll(".tabs button").forEach((btn) => {
     btn.addEventListener("click", () => showTab(btn.dataset.tab));
   });
@@ -35,6 +35,6 @@ window.onload = function () {
   // Reset
   document.getElementById("btn-reset").addEventListener("click", resetGame);
 
-  // Game Over Tab → Neustart
+  // Game Over: Neu starten
   document.getElementById("btn-restart").addEventListener("click", startNewGame);
 };
