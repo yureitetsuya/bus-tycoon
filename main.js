@@ -1,65 +1,70 @@
+// Startwerte
+let drivers = 2;
+let vehicles = 2;
+let services = 0;
 let money = 1000;
-let busCondition = 100;
 
-function updateUI() {
-  document.getElementById("money").textContent = money;
-  document.getElementById("bus-condition").textContent = busCondition;
-}
+// Zufallsereignisse
+const events = [
+  {
+    title: "Oh nein! Bus beschädigt.",
+    description: "Ein Fahrzeug fällt aus. Du hast jetzt ein Fahrzeug weniger.",
+    effect: () => {
+      vehicles = Math.max(0, vehicles - 1);
+    }
+  },
+  {
+    title: "Fahrer gefunden!",
+    description: "Du hast 2 neue Fahrer angeworben.",
+    effect: () => {
+      drivers += 2;
+    }
+  },
+  {
+    title: "Dienst gewonnen!",
+    description: "Du hast einen neuen Linienauftrag erhalten.",
+    effect: () => {
+      services += 1;
+      money += 500;
+    }
+  },
+  {
+    title: "Werkstattrechnung",
+    description: "Du musst 300 € für Reparaturen zahlen.",
+    effect: () => {
+      money = Math.max(0, money - 300);
+    }
+  },
+  {
+    title: "💀 VDL CITEA gezogen!",
+    description: "Du hast einen VDL CITEA gekauft. Leider war das ein Fehler. GAME OVER.",
+    effect: () => {
+      showEvent("💀 VDL CITEA gezogen!", "Du hast einen VDL gekauft. Leider war das dein Ende. Das Spiel wird neu gestartet...");
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
+    }
+  }
+];
 
-function startNewGame() {
-  money = 1000;
-  busCondition = 100;
-  saveGame();
-  document.getElementById("main-menu").classList.add("hidden");
-  document.getElementById("game-ui").classList.remove("hidden");
-  showTab("dashboard");
-  updateUI();
-}
+// Zufälliges Ereignis
+function drawRandomEvent() {
+  const random = events[Math.floor(Math.random() * events.length)];
 
-function continueGame() {
-  loadGame();
-  document.getElementById("main-menu").classList.add("hidden");
-  document.getElementById("game-ui").classList.remove("hidden");
-  showTab("dashboard");
-  updateUI();
-}
-
-function resetGame() {
-  localStorage.removeItem("bus-money");
-  localStorage.removeItem("bus-condition");
-  location.reload();
-}
-
-function runService(income) {
-  if (busCondition <= 0) return;
-
-  money += income;
-  busCondition -= 10;
-
-  if (money <= 0) {
-    showPopup("popup-gameover");
+  if (random.title.includes("VDL")) {
+    random.effect(); // gleiches wie bei showEvent, aber mit Reload
     return;
   }
 
-  // Erfolge
-  if (money >= 1200 && !localStorage.getItem("achievement1")) {
-    localStorage.setItem("achievement1", "true");
-    showAchievement("Erster Dienst gefahren!");
-  }
-
-  if (money >= 10000 && !localStorage.getItem("achievement2")) {
-    localStorage.setItem("achievement2", "true");
-    showAchievement("Du hast 10.000 € verdient!");
-  }
-
+  random.effect();
+  showEvent(random.title, random.description);
   updateUI();
-  saveGame();
 }
 
-function repairBus() {
-  if (money < 100 || busCondition >= 100) return;
-  money -= 100;
-  busCondition = 100;
-  updateUI();
-  saveGame();
+// Update der Infoleiste
+function updateUI() {
+  document.getElementById("driver-count").textContent = drivers;
+  document.getElementById("vehicle-count").textContent = vehicles;
+  document.getElementById("service-count").textContent = services;
+  document.getElementById("money").textContent = money;
 }
